@@ -1,3 +1,5 @@
+//functions utilizing each of the following operators: +, - , *, %, ++, --
+
 function addition_Function() {
     var addition = 2 + 2;
     document.getElementById("Add").innerHTML = "2 + 2 = " + addition;
@@ -15,7 +17,7 @@ function multiplication() {
 
 function division() {
     var simple_Math = 48 / 6;
-    document.getElementById("Div").innerHTML = "48 / 6 = " + simple_Math;
+    document.getElementById("Division").innerHTML = "48 / 6 = " + simple_Math;
 }
 
 function more_Math() {
@@ -41,7 +43,9 @@ var X = 5.25;
 X--;
 document.write(X);
 
-window.alert(Math.random() * 100);
+//a function utilizing Math.random()
+
+window.alert(Math.random() * 100); 
 
 
 
