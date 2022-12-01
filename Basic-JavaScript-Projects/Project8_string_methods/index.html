@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="em">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="./JS/main.js"></script>
+    <title>JavaScript String search() Method</title>
+</head>
+
+
+<!--HTML elements and event handlers for each JavaScript function ---->
+
+<body>
+
+  <p id="Precision"></p>
+  <button onclick="precision_Method()">Click here.</button>
+
+  <p id="Numbers_to_string"></p>
+  <button onclick="string_Method()">Click Here</button>
+
+  <p id="Concatenate"></p>
+  <button onclick="full_Sentence()">Click here for a sentence.</button>
+
+  <p id="Slice"></p>
+  <button onclick="slice_Method()">Click Here</button>
+
+  
+
+<!--// JavaScript to illustrate .toUpperCase() -->
+<script>
+    function func() {
+        var str = 'EYE4EYE';
+        var string = str.toUpperCase();
+        document.write(string);
+    }
+    func();
+</script>
+
+<!--JavaScript String - search() Method-->
+<script type="text/javascript">
+    var re = /apples/gi;
+    var str = "Apples are round, and apples are juicy.";
+
+    if (str.search(re) == -1) {
+        document.write("Does not contain Apples");
+    } else {
+        document.write("Contains Apples");
+    }
+</script>
+
+</body>
+
+</html>
