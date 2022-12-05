@@ -13,13 +13,16 @@
 
 <p id="List_of_Instruments"></p>
 <button onclick="for_Loop()">Click here.</button>
-</body>
+
 
 <p id="Cat"></p>
 <button onclick="cat_pics()">Click Meow.</button>
 
 <p id="Constant"></p>
 <button onclick="constant_function()">Click music.</button>
+
+
+
 
 <!--Let function-->
 <script type="text/javascript" charset="utf-8">
@@ -41,5 +44,57 @@
     document.write(`This function returns ${s} as a product of 5 and 6.`);;
 </script>
 
+
+<!--break stament-->
+<script>
+
+let i = 0;
+
+while (i < 6) {
+    if (i === 3) {
+        break;
+    }
+    i = i + 1;
+}
+
+console.log(i);
+
+</script>
+
+<!--continue statement-->
+<p id="para">
+
+</p>
+<script>
+    var res = "";
+    var a;
+    for (a = 1; a <= 7; a++) {
+        if (a == 4) {
+            continue;
+        }
+        res += "The value of a is : " + a + "<br>";
+    }
+    document.getElementById("para").innerHTML = res;  
+</script>
+
+
+<!--while loop-->
+<script type="text/javascript">
+    <!--
+       var count = 0;
+       document.write("Starting Loop ");
+    
+       while (count < 10) {
+          document.write("Current Count : " + count + "<br />");
+          count++;
+       }
+    
+       document.write("Loop stopped!");
+    //-->
+</script>
+
+<p>Set the variable to different value and then try...</p>
+
+</body>
 
 </html>
