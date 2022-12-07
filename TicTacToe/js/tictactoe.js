@@ -14,11 +14,11 @@ function placeXOrO(squareNumber) {
         //This condition checks who's turn it is.
         if (activePlayer === 'X') {
             //If activePlayer is equal to 'X', the x.png is placed in HTML
-            select.style.backgroundImage = 'url("images/x.png")';
+            select.style.backgroundImage = 'url("images/xxx.png")';
             //Active player may only be 'X' or 'O'so, if not 'X' it must be 'O'
         } else {
             //If activePlay is equal to 'O', the o.png is placed in HTML
-            select.style.backgroundImage = 'url("images/o.png")';
+            select.style.backgroundImage = 'url("images/oo.png")';
         }
         //squareNumber and activePlayer are concatenated together and added to array.
         selectedSquares.push(squareNumber + activePlayer);
@@ -34,7 +34,7 @@ function placeXOrO(squareNumber) {
             activePlayer = 'X';
         }
         //This function plays placement sound.
-        audio('./media/place.mp3');
+        audio('./media/grunt.mp3');
         //This condition checks to see if it is the computers turn.
         if (activePlayer === 'O') {
             //This function disables clicking for the computers turn.
@@ -105,7 +105,7 @@ function checkWinConditions() {
     //9 squares are selected the code executes.
     else if (selectedSquares.length >= 9) {
         //This function plays the tie game sound.
-        audio('./media/tie.mp3');
+        audio('./media/fart.mp3');
         //This function sets a .3 second timer before the resetGame is called.
         setTimeout(function () { resetGame(); }, 500);
     }
@@ -205,7 +205,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
     //This line disallows clicking while the win sound is playing
     disableClick();
     //this line plays the win sounds.
-    audio('./media/wingame.mp3');
+    audio('./media/winwin.mp3');
     //This line calls our main animation loop.
     animateLineDrawing();
     //This line waits 1 second. Then, clears canvas, resets game, an allows clicking again.
