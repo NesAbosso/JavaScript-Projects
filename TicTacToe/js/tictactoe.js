@@ -198,7 +198,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
         //This line starts our animation loop.
         const animationLoop = requestAnimationFrame(clear);
         //This line clears our canvas.
-        c.clearRect(0, 0, 608);
+        c.clearRect(0, 0, 608, 608);
         //This line stops our animation loop.
         cancelAnimationFrame(animationLoop);
     }
