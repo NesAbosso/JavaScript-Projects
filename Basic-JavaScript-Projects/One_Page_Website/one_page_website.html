@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+    <title>Pretty Plants</title>
+    <meta charset="UTF-8">
+    <script src="./JS/one_page_website.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="./CSS/one_page_website.css" />
+</head>
+<body>
+<h2 style="text-align:center">Natures Beauty</h2>
+<!-- Images used to open the lightbox -->
+<div class="row">
+    <div class="column">
+        <img src="./Images/plant1-small.png" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+    </div>
+    <div class="column">
+        <img src="./Images/plant2-small.png" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+    </div>
+    <div class="column">
+        <img src="./Images/plant3-small.png" style="width:100%" onclick="openModal();currentSlide(3)"
+            class="hover-shadow cursor">
+    </div>
+    <div class="column">
+        <img src="./Images/plant4-small.png" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+    </div>
+</div>
+
+<div id="myModal" class="modal">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+
+        <div class="mySlides">
+            <div class="numbertext">1 / 4</div>
+            <img src="./Images/plant1.png" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">2 / 4</div>
+            <img src="./Images/plant2.png" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">3 / 4</div>
+            <img src="./Images/plant3.png" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">4 / 4</div>
+            <img src="./Images/plant4.png" style="width:100%">
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+
+
+        <div class="column">
+            <img class="demo cursor" src="./Images/plant1-small.png" style="width:100%" onclick="currentSlide(1)"
+                alt="Pink flowers">
+        </div>
+        <div class="column">
+            <img class="demo cursor" src="./Images/plant2-small.png" style="width:100%" onclick="currentSlide(2)" alt="Yellow flowers">
+        </div>
+        <div class="column">
+            <img class="demo cursor" src="./Images/plant3-small.png" style="width:100%" onclick="currentSlide(3)"
+                alt="Green plants">
+        </div>
+        <div class="column">
+            <img class="demo cursor" src="./Images/plant4-small.png" style="width:100%" onclick="currentSlide(4)"
+                alt="Exotic plants">
+        </div>
+    </div>
+</div>
+<h1>Pretty Plants</h1>
+<p style="color:rgb(34, 87, 67);font-size: 45px;">Plants are one of five big groups (kingdoms) of living things. They are autotrophic eukaryotes, which means they have
+complex cells, and make their own food.<br> Usually they cannot move (not counting growth). Plants include familiar
+types such as trees, herbs, bushes, grasses, vines, ferns, mosses, and green algae.<br>
+Take a look at these pretty plants above.</p>
+</body>
+
+</html>
