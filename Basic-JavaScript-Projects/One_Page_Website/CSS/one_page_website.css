@@ -136,7 +136,19 @@ p {
 
 }
 
+html {
+    background-color: rgb(186, 255, 169);
+}
 body {
-    background-color: lightblue;
+    opacity: 1;
+    transition: 1s opacity;
 }
 
+body.fade-out {
+    opacity: 0;
+    transition: none;
+}
+
+form {
+    text-align: center;
+}

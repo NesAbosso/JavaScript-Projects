@@ -7,6 +7,17 @@
     <meta charset="UTF-8">
     <script src="./JS/one_page_website.js" defer></script>
     <link rel="stylesheet" type="text/css" href="./CSS/one_page_website.css" />
+    
+    <script>
+        function validateForm() {
+            let x = document.forms["myForm"]["Pnumber"].value;
+            if (x == "") {
+                alert("Number must be filled out");
+                return false;
+            }
+        }
+    </script>
+
 </head>
 <body>
 <h2 style="text-align:center">Natures Beauty</h2>
@@ -76,11 +87,19 @@
         </div>
     </div>
 </div>
-<h1>Pretty Plants</h1>
-<p style="color:rgb(34, 87, 67);font-size: 45px;">Plants are one of five big groups (kingdoms) of living things. They are autotrophic eukaryotes, which means they have
+<h1 style="font-size:8vw;">Pretty Plants</h1>
+<p style="color:rgb(34, 87, 67);font: size 2vw;">Plants are one of five big groups (kingdoms) of living things. They are autotrophic eukaryotes, which means they have
 complex cells, and make their own food.<br> Usually they cannot move (not counting growth). Plants include familiar
 types such as trees, herbs, bushes, grasses, vines, ferns, mosses, and green algae.<br>
 Take a look at these pretty plants above.</p>
+
+
+
+<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+    Phone Number: <input type="text" name="Pnumber">
+    <input type="submit" value="Submit">
+</form>
+
 </body>
 
 </html>
