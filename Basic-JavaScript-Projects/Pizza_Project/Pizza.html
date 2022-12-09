@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Pizza Drill Demo</title>
+        <title>Pizza Drill</title>
+        <style>
+            .button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+        </style>
+        <style>
+            div.sticky {
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                background-color: rgb(78, 146, 0);
+                padding: 50px;
+                font-size: 20px;
+            }
+        </style>
         <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
             <meta content="width=device-width,initial-scale=1.0" name="viewport">
             <script src="./Pizza_JavaScript/Pizza.js" defer></script>
             <link rel="stylesheet" type="text/css" href="./Pizza_CSS/Pizza.css"/>
-    </head>
+    <style>
+        .mySlides {
+            display: none;
+        }
+    </style>
+    
+        </head>
     <body>
+        <h1>PIZZA DRILL BEST PIZZA!</h1>
+        <img src="./pizza.jpg" alt="nom nom">
+
+
+    <h2>Pizza</h2>
+    <p>Love pizza?</p>
+    <div class="sticky">Look at this pizza!</div>
+    
+    <p>Yum..</p>
+    <h2>Pizza!</h2>
+    <p>Love pizza as much as we do?</p>
+    </div>
+
+
+        <p><a href="https://pizza.game/">Play a pizza game!!</a></p>
+        <div class="zoom-in-zoom-out"></div>
         <div id="menuBG">
             <h1 style="margin: 0 0px 20px;">Pizza Drill Tutorial</h1>
             <input id="btnOrder" type="button" onclick="getReceipt()"
@@ -64,5 +110,117 @@
                 </div>
             </form>
         </div>
+<button class="open-button" onclick="openForm()">Open Form</button>
+
+<div class="form-popup" id="myForm">
+    <form action="/action_page.php" class="form-container">
+        <h1>Login</h1>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit" class="btn">Login</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+</div>
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
+<style>
+    html {
+        width: 100px;
+        height: 100px;
+        background: rgb(231, 176, 72);
+        position: relative;
+        animation: mymove 10s;
+    }
+
+    @keyframes mymove {
+        0% {
+            top: 0px;
+            background: rgb(159, 194, 78);
+            width: 100px;
+        }
+
+        100% {
+            top: 200px;
+            background: rgb(248, 192, 9);
+            width: 300px;
+        }
+    }
+</style>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    #section1 {
+        height: 600px;
+        background-color: rgb(241, 110, 2);
+    }
+
+    #section2 {
+        height: 600px;
+        background-color: yellow;
+    }
+</style>
+</head>
+
+<body>
+
+    <h1>About our pizza's</h1>
+
+    <div class="main" id="section1">
+        <h2>About</h2>
+        <p>About our pizza's.</p>
+        <a href="#section2">Click Me</a>
+        <p>Our pizza's are home made..</p>
+    </div>
+    
+    <div class="main" id="section2">
+        <h2>contact</h2>
+        <a href="#section1">Click Me</a>
+    </div>
+<h2 class="w3-center">Pizza's</h2>
+
+<div class="w3-content w3-section" style="max-width:500px">
+    <img class="mySlides" src="./pizza1.jpg" style="width:100%">
+    <img class="mySlides" src="./pizza2.jpg" style="width:100%">
+    
+</div>
+
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+    }
+</script>
+<h2>Choose</h2>
+
+<button>contact</button>
+<a href="#" class="button">Home</a>
+<button class="button">Pizza fans</button>
+
+
     </body>
 </html>
