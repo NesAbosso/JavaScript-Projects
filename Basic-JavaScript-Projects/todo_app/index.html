@@ -2,26 +2,31 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="./CSS/todo.css">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
     <body>
         <title>To Do List</title>
-    
-        <div class="container">
-    <div id="newtask">
-        <input type="text" placeholder="Add Tasks">
-        <button id="push">Add</button>
+
+    <div id="myDIV" class="header">
+        <h2>My To Do List</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
     </div>
-    <div id="tasks"></div>
+    
+    <ul id="myUL">
+        <li>Feed Cat</li>
+        <li class="checked">Pay rent</li>
+        <li>Walk dog</li>
+        <li>Buy milk</li>
+        <li>Clean house</li>
+        <li>Organize desk</li>
+    </ul>
+<div class="footer">
+    <p>Janessa Abosso | 2022</p>
 </div>
 
-        <script src="./js/todo.js"></script>
-
-<footer>
-    <p>Janessa Abosso &nbsp;|&nbsp; &copy; 2022</p>
-</footer>
-
+  <script src="./js/todo.js"></script>
 
     </body>
 </html>
