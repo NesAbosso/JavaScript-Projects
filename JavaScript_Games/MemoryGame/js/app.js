@@ -1,115 +1,182 @@
-const cardArray = [
-    {
-        name: "Banana cat",
-        img:  './images/bcat',
-    },
-    {
-        name: "Blue cat",
-        img: 'images/bg.png',
-    },
-    {
-        name: "Candy",
-        img: 'images/candy.png',
-    },
-    {
-        name: "Cat",
-        img: 'images/cat.png',
-    },
-    {
-        name: "Cup cat",
-        img: 'images/cupcat.png',
-    },
-    {
-        name: "Watermelon",
-        img: 'images/watermelon.png',
-    },
-    {
-        name: "Banana cat",
-        img: 'images/bcat.png',
-    },
-    {
-        name: "Blue cat",
-        img: 'images/bg.png',
-    },
-    {
-        name: "Candy",
-        img: 'images/candy.png',
-    },
-    {
-        name: "Cat",
-        img: 'images/cat.png',
-    },
-    {
-        name: "Cup cat",
-        img: 'images/cupcat.png',
-    },
-    {
-        name: "Watermelon",
-        img: './images/watermelon.png"g',
-    },
+const moves = document.getElementById("moves-count");
+const timeValue = document.getElementById("time");
+const startButton = document.getElementById("start");
+const stopButton = document.getElementById("stop");
+const gameContainer = document.querySelector(".game-container");
+const result = document.getElementById("result");
+const controls = document.querySelector(".controls-container");
+let cards;
+let interval;
+let firstCard = false;
+let secondCard = false;
 
-    
-]
+//Items array
+const items = [
+    { name: "bee", image: "./bcat.png" },
+    { name: "crocodile", image: "./candy.png" },
+    { name: "macaw", image: "./bg.png" },
+    { name: "gorilla", image: "./cat.png" },
+    { name: "tiger", image: "./cupcat.png" },
+    { name: "monkey", image: "./purcat.png" },
+    { name: "chameleon", image: "./boba.png" },
+    { name: "piranha", image: "./star.png" },
+    { name: "anaconda", image: "./frog.png" },
+    { name: "sloth", image: "./scat.png" },
+    { name: "cockatoo", image: "./ham.png" },
+    { name: "toucan", image: "./pen.png" },
+];
 
-cardArray.sort(() => 0.5 - Math.random())
+//Initial Time
+let seconds = 0,
+    minutes = 0;
+//Initial moves and win count
+let movesCount = 0,
+    winCount = 0;
 
-const gridDisplay = document.querySelector('#grid')
-const resultDisplay = document.querySelector('#result')
-let cardsChosen = []
-let cardsChosenIds = []
-const cardsWon = []
-
-function createBoard() {
-    for (let i = 0; i < cardArray.length; i++) {
-        const card = document.createElement('img')
-        card.setAttribute('src', 'images/pink.png')
-        card.setAttribute('date-id', i)
-        card.addEventListener('click', flipCard)
-        gridDisplay.appendChild(card)
+//For timer
+const timeGenerator = () => {
+    seconds += 1;
+    //minutes logic
+    if (seconds >= 60) {
+        minutes += 1;
+        seconds = 0;
     }
-}
-createBoard()
+    //format time before displaying
+    let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
+    let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
+    timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
+};
 
-function checkMatch() {
-    const cards = document.querySelectorAll('img')
-    const optionOneId = cardsChosenIds[0]
-    const optionTwoId = cardsChosenIds[1]
-    if (optionOneId = optionTwoId) {
-        cards[optionOneId].setAttribute('src', 'images/pink.png')
-        cards[optionTwoId].setAttribute('src', 'images/pink.png')
-        alert('You have clicked the same image')
-    }
+//For calculating moves
+const movesCounter = () => {
+    movesCount += 1;
+    moves.innerHTML = `<span>Moves:</span>${movesCount}`;
+};
 
+//Pick random objects from the items array
+const generateRandom = (size = 4) => {
+    //temporary array
+    let tempArray = [...items];
+    //initializes cardValues array
+    let cardValues = [];
+    //size should be double (4*4 matrix)/2 since pairs of objects would exist
+    size = (size * size) / 2;
+    //Random object selection
+    for (let i = 0; i < size; i++) {
+        const randomIndex = Math.floor(Math.random() * tempArray.length);
+        cardValues.push(tempArray[randomIndex]);
+        //once selected remove the object from temp array
+        tempArray.splice(randomIndex, 1);
+    }
+    return cardValues;
+};
 
-    console.log('check for match!')
-    if (cardsChosen[0] == cardsChosen[1]) {
-        alert('You found a match!')
-        cards[optionOneId].setAttribute('src', 'images/dpink.png')
-        cards[optionTwoId].setAttribute('src', 'images/dpink.png')
-        cards[optionOneId].removeEventListener('click', flipCard)
-        cards[optionTwoId].removeEventListener('click', flipCard)
-        cardsWon.push(cardsChosen)
-    } else {
-        cards[optionOneId].setAttribute('src', 'images/pink.png')
-        cards[optionTwoId].setAttribute('src', 'images/pink.png')
-        alert('Sorry try again!')
+const matrixGenerator = (cardValues, size = 4) => {
+    gameContainer.innerHTML = "";
+    cardValues = [...cardValues, ...cardValues];
+    //simple shuffle
+    cardValues.sort(() => Math.random() - 0.5);
+    for (let i = 0; i < size * size; i++) {
+        /*
+            Create Cards
+            before => front side (contains question mark)
+            after => back side (contains actual image);
+            data-card-values is a custom attribute which stores the names of the cards to match later
+          */
+        gameContainer.innerHTML += `
+     <div class="card-container" data-card-value="${cardValues[i].name}">
+        <div class="card-before">?</div>
+        <div class="card-after">
+        <img src="${cardValues[i].image}" class="image"/></div>
+     </div>
+     `;
     }
-    resultDisplay.itextContent = cardsWon.length
-    cardsChosen = []
-    cardsChosenIds = []
+    //Grid
+    gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
 
-    if (cardsWon.length == cardArray.length / 2) {
-        resultDisplay.innerHTML = 'Congratulations you found them all!'
-    }
-}
-function flipCard() {
-   
-    const cardId = this.getAttribute('data-id')
-    cardsChosen.push(cardArray[cardId].name)
-    cardsChosenIds.push(cardId)
-    
-    this.setAttribute('src', cardArray[cardId].img)
-    if (cardsChosen.length === 2) {
-        setTimeout ( checkMatch, 500)
-    }
-}
+    //Cards
+    cards = document.querySelectorAll(".card-container");
+    cards.forEach((card) => {
+        card.addEventListener("click", () => {
+            //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
+            if (!card.classList.contains("matched")) {
+                //flip the cliked card
+                card.classList.add("flipped");
+                //if it is the firstcard (!firstCard since firstCard is initially false)
+                if (!firstCard) {
+                    //so current card will become firstCard
+                    firstCard = card;
+                    //current cards value becomes firstCardValue
+                    firstCardValue = card.getAttribute("data-card-value");
+                } else {
+                    //increment moves since user selected second card
+                    movesCounter();
+                    //secondCard and value
+                    secondCard = card;
+                    let secondCardValue = card.getAttribute("data-card-value");
+                    if (firstCardValue == secondCardValue) {
+                        //if both cards match add matched class so these cards would beignored next time
+                        firstCard.classList.add("matched");
+                        secondCard.classList.add("matched");
+                        //set firstCard to false since next card would be first now
+                        firstCard = false;
+                        //winCount increment as user found a correct match
+                        winCount += 1;
+                        //check if winCount ==half of cardValues
+                        if (winCount == Math.floor(cardValues.length / 2)) {
+                            result.innerHTML = `<h2>You Won</h2>
+            <h4>Moves: ${movesCount}</h4>`;
+                            stopGame();
+                        }
+                    } else {
+                        //if the cards dont match
+                        //flip the cards back to normal
+                        let [tempFirst, tempSecond] = [firstCard, secondCard];
+                        firstCard = false;
+                        secondCard = false;
+                        let delay = setTimeout(() => {
+                            tempFirst.classList.remove("flipped");
+                            tempSecond.classList.remove("flipped");
+                        }, 900);
+                    }
+                }
+            }
+        });
+    });
+};
+
+//Start game
+startButton.addEventListener("click", () => {
+    movesCount = 0;
+    seconds = 0;
+    minutes = 0;
+    //controls amd buttons visibility
+    controls.classList.add("hide");
+    stopButton.classList.remove("hide");
+    startButton.classList.add("hide");
+    //Start timer
+    interval = setInterval(timeGenerator, 1000);
+    //initial moves
+    moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
+    initializer();
+});
+
+//Stop game
+stopButton.addEventListener(
+    "click",
+    (stopGame = () => {
+        controls.classList.remove("hide");
+        stopButton.classList.add("hide");
+        startButton.classList.remove("hide");
+        clearInterval(interval);
+    })
+);
+
+//Initialize values and func calls
+const initializer = () => {
+    result.innerText = "";
+    winCount = 0;
+    let cardValues = generateRandom();
+    console.log(cardValues);
+    matrixGenerator(cardValues);
+};
